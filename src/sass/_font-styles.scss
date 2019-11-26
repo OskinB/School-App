@@ -1,0 +1,68 @@
+.h1-bold {
+    @include text-style(2rem, $navy-blue, left, 700);
+    font-family: SanFran;
+}
+
+.h1-medium {
+    @include text-style(2rem, $navy-blue, left, 500);
+    font-family: SanFran;
+}
+
+.h1-regular {
+    @include text-style(2rem, $navy-blue, left, 400);
+    font-family: SanFran;
+}
+
+.h2-bold {
+    @include text-style(1.5rem, $navy-blue, left, 700);
+    font-family: SanFran;
+}
+
+.h2-bold-center {
+    @include text-style(1.5rem, $navy-blue, center, 700);
+    font-family: SanFran;
+}
+
+.h2-medium {
+    @include text-style(1.5rem, $navy-blue, left, 500);
+    font-family: SanFran;
+}
+
+.h2-regular {
+    @include text-style(1.5rem, $navy-blue, left, 400);
+    font-family: SanFran;
+}
+
+.h3-medium {
+    @include text-style(1rem, $grey, left, 500);
+    font-family: SanFran;
+}
+
+.p-bold {
+    @include text-style(1rem, $navy-blue, left, 700);
+    font-family: SanFran;
+}
+
+.p-medium {
+    @include text-style(1rem, $navy-blue, left, 500);
+    font-family: SanFran;
+}
+
+.p-regular {
+    @include text-style(1rem, $navy-blue, left, 400);
+    font-family: SanFran;
+}
+
+.p-regular-center {
+    @include text-style(1rem, $navy-blue, center, 400);
+    font-family: SanFran;
+}
+//linkar
+.text-link {
+    @include text-style(1rem, $light-blue, left, 400);
+}
+//Placeholder
+
+.placeholder-txt {
+    @include text-style(1rem, $grey, left, 400);
+}
