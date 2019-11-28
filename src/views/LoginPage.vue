@@ -1,5 +1,5 @@
 <template>
-  <div class="login">
+  <div class="login-page">
     <Login />
   </div>
 </template>
@@ -15,3 +15,10 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scope>
+.login-page {
+  width: 400px;
+  margin: 0 auto;
+}
+</style>
