@@ -1,0 +1,47 @@
+button {
+    outline: none;
+}
+
+.mobile-btn-add {
+    @include flex(row, space-between, center);
+    @include card;
+    color: $grey;
+    padding: 20px 24px;
+}
+
+.btn-login {
+    @include btnBox(240px, 48px, $green);
+}
+
+.btn-create-account {
+    @include btnBox(240px, 48px, $light-blue);
+}
+
+.btn-add {
+    @include btnBox(168px, 48px, $light-blue);
+}
+
+.btn-confirm {
+    @include btnBox(168px, 48px, $green);
+}
+
+
+// ********** MEDIA QUERIES **********
+
+// *** MOBILE SIZE ***
+@media only screen and (max-width: 900px) {}
+
+// *** DESKTOP SIZE ***
+@media only screen and (min-width: 900px) {
+    .mobile-btn-add {
+        display: none;
+    }
+
+    .btn-add {
+        @include btnBox(240px, 48px, $light-blue);
+    }
+
+    .btn-confirm {
+        @include btnBox(240px, 48px, $green);
+    }
+}

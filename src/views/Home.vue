@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <WaitingList />
-    <!-- <Interviews/>
-    <DayContent/>-->
+    <!-- <Interviews /> -->
+    <!-- <DayContent/> -->
   </div>
 </template>
 
@@ -18,6 +18,19 @@ export default {
     WaitingList,
     Interviews,
     DayContent
+  },
+  data() {
+    return {
+      teacher: false
+    };
+  },
+  computed: {
+    testing() {
+      console.log("Hæj frá Home.vue");
+    }
+  },
+  mounted() {
+    console.log("Hæjjjjaaaaa frá Home.vue");
   }
 };
 </script>
@@ -29,8 +42,7 @@ export default {
 // Þegar er desktop
 @media only screen and (min-width: 900px) {
   .container {
-    width: 100vw;
-    margin: 48px 24px;
+    margin: 48px 32px;
   }
 }
 </style>

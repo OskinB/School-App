@@ -4,3 +4,57 @@
     justify-content: $jst;
     align-items: $algn;
 }
+
+@mixin pageTitle {
+    @include flex(row, flex-start, center);
+    color: $navy-blue;
+
+    h1 {
+        font-size: 32px;
+        margin-left: 8px;
+        // *Vantar: font-weight: 500/medium;
+    }
+
+    img {
+        height: 41px;
+        width: 41px;
+    }
+}
+
+@mixin card {
+    background-color: $white;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    margin: 32px 0;
+    position: relative;
+}
+
+@mixin mobilePill {
+    background-color: $white;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    padding: 1px 8px;
+}
+
+@mixin mobileSubjectIcon {
+    position: absolute;
+    right: 16px;
+    top: -23px;
+    background-color: white;
+    padding: 5px;
+    border-radius: 20px;
+    display: flex;
+}
+
+@mixin btnBox($width, $height, $bg-color) {
+    width: $width;
+    height: $height;
+    background-color: $bg-color;
+    @include flex(row, center, center);
+    border-radius: 5px;
+    color: #fff;
+    text-align: center;
+    font-size: 16px;
+    margin: 8px 0;
+    @content;
+}
