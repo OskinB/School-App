@@ -9,22 +9,67 @@ button {
     padding: 20px 24px;
 }
 
+.btn-holder {
+    display: flex;
+    justify-content: flex-end;
+    margin: 200px 0 100px;
+}
+
 .btn-login {
     @include btnBox(240px, 48px, $green);
+
+    &:hover {
+        opacity: 1;
+    }
 }
 
 .btn-create-account {
     @include btnBox(240px, 48px, $light-blue);
+
+    &:hover {
+        opacity: 1;
+    }
 }
 
-.btn-add {
+.btn-add-sm {
+    @include btnBox(88px, 32px, $light-blue);
+
+    &:hover {
+        opacity: 1;
+    }
+}
+
+.btn-add-md {
     @include btnBox(168px, 48px, $light-blue);
+
+    &:hover {
+        opacity: 1;
+    }
 }
 
-.btn-confirm {
+.btn-add-lg {
+    @include btnBox(240px, 48px, $light-blue);
+
+    &:hover {
+        opacity: 1;
+    }
+}
+
+.btn-confirm-md {
     @include btnBox(168px, 48px, $green);
+
+    &:hover {
+        opacity: 1;
+    }
 }
 
+.btn-confirm-lg {
+    @include btnBox(240px, 48px, $green);
+
+    &:hover {
+        opacity: 1;
+    }
+}
 
 // ********** MEDIA QUERIES **********
 
@@ -37,11 +82,4 @@ button {
         display: none;
     }
 
-    .btn-add {
-        @include btnBox(240px, 48px, $light-blue);
-    }
-
-    .btn-confirm {
-        @include btnBox(240px, 48px, $green);
-    }
 }

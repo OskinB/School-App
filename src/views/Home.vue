@@ -1,8 +1,11 @@
 <template>
   <div class="container">
+    <div class="user-greeting">
+      <h1>Góðan daginn, Ósk</h1>
+    </div>
     <WaitingList />
-    <!-- <Interviews /> -->
-    <!-- <DayContent/> -->
+    <Interviews />
+    <ModalHelpRequest />
   </div>
 </template>
 
@@ -10,14 +13,14 @@
 // @ is an alias to /src
 import WaitingList from "@/components/WaitingList.vue";
 import Interviews from "@/components/Interviews.vue";
-import DayContent from "@/components/DayContent.vue";
+import ModalHelpRequest from "@/components/modals/HelpRequest.vue";
 
 export default {
   name: "home",
   components: {
     WaitingList,
     Interviews,
-    DayContent
+    ModalHelpRequest
   },
   data() {
     return {
@@ -36,13 +39,19 @@ export default {
 </script>
 
 <style lang="scss" scope>
-.container {
-  margin: 32px 16px;
+.user-greeting {
+  padding: 40px 0px;
+  h1 {
+    font-size: 1.5rem;
+    color: $navy-blue;
+    text-align: left;
+    font-weight: bold;
+  }
 }
-// Þegar er desktop
+
 @media only screen and (min-width: 900px) {
-  .container {
-    margin: 48px 32px;
+  .user-greeting {
+    padding: 56px 45px 64px;
   }
 }
 </style>

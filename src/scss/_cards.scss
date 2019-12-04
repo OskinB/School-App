@@ -1,0 +1,130 @@
+.mobile-card {
+    @include card;
+    color: $navy-blue;
+
+    .card-top {
+        @include flex(row, flex-end, center);
+
+        h4 {
+            @include mobilePill;
+            position: absolute;
+            right: 80px;
+            top: -15px;
+            font-size: 16px;
+            line-height: 23px;
+            font-weight: bold;
+        }
+
+        .subject-icon {
+            @include mobilePill;
+            @include mobileSubjectIcon;
+
+            img {
+                height: 32px;
+                width: auto;
+            }
+        }
+    }
+
+    .mobile-card-info {
+        @include flex(column, flex-start, flex-start);
+        padding: 16px 0 16px 24px;
+
+        h2 {
+            font-size: 16px;
+            line-height: 23px;
+            font-weight: bold;
+        }
+
+        .selected-person {
+            @include flex(row, flex-start, center);
+            margin-top: 8px;
+
+            h3 {
+                font-size: 16px;
+                line-height: 23px;
+            }
+
+            img {
+                height: 32px;
+                width: 32px;
+                margin: 0 16px;
+            }
+        }
+    }
+}
+
+.card-table {
+    width: 100%;
+    font-size: 16px;
+    line-height: 23px;
+    margin: 40px 0;
+
+    .card-info-title {
+        margin: 32px 0;
+        color: $grey;
+    }
+
+    .waitingList-card-info {
+        @include card;
+        color: $navy-blue;
+    }
+
+    .selected-subject {
+        @include flex(row, flex-start, center);
+        margin-top: 8px;
+
+        h3 {
+            font-size: 16px;
+            line-height: 23px;
+        }
+
+        img {
+            height: 32px;
+            width: 32px;
+            margin: 0 16px;
+        }
+    }
+
+    .selected-person {
+        @include flex(row, flex-start, center);
+        margin-top: 8px;
+
+        h3 {
+            font-size: 16px;
+            line-height: 23px;
+        }
+
+        img {
+            height: 32px;
+            width: 32px;
+            margin: 0 16px;
+        }
+    }
+
+    th,
+    td {
+        text-align: left;
+        padding: 24px 32px;
+        vertical-align: middle;
+    }
+
+    // td>div {
+    //     @include flex(row, flex-start, center);
+    // }
+}
+
+
+.close-icon {
+    @include mobilePill;
+    @include flex(row, center, center);
+    position: absolute;
+    padding: 6px;
+    top: 306px;
+    right: 23px;
+
+    img {
+        height: 20px;
+        width: 20px;
+    }
+}

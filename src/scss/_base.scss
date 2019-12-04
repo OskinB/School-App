@@ -1,3 +1,23 @@
 body {
     background-color: $light-grey;
+
+    a {
+        text-decoration: none;
+    }
+}
+
+.container {
+    margin: 32px 16px;
+    cursor: default;
+}
+
+.page-holder {
+    height: 100vh;
+}
+
+// *** DESKTOP SIZE ***
+@media only screen and (min-width: 900px) {
+    .container {
+        margin: 48px 32px 0;
+    }
 }
