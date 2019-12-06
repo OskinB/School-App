@@ -1,9 +1,8 @@
-import AllWaitingList from '@/components/sections/AllWaitingList';
 <template>
   <div>
-    <div id="open-wait" class="modal-window">
+    <div id="open-wait" class="modal-window" v-show="modalDisplay">
       <div>
-        <a href="#Close" title="Close" class="modal-close">X</a>
+        <a href="#Close" title="Loka" class="modal-close">X</a>
         <form action @submit.prevent="onSubmit">
           <h1>Þarftu hjálp?</h1>
           <div class="row">
@@ -49,24 +48,31 @@ import AllWaitingList from '@/components/sections/AllWaitingList';
 
 <script>
 export default {
+
   data() {
     return {
       form: {
         subject: "",
         teacherName: "",
         helpInfo: ""
-      }
+      },
+      modalDisplay: true
     };
   },
   methods: {
     onSubmit() {
       let addHelp = {
-        subject: this.subject,
-        teacherName: this.teacherName,
-        helpInfo: this.helpInfo
+        subject: this.form.subject,
+        teacherName: this.form.teacherName,
+        helpInfo: this.form.helpInfo,
+        time: 5,
+        studentName: "Nemi"
       };
       this.$emit("help-submitted", addHelp);
-      (this.subject = ""), (this.teacherName = ""), (this.helpInfo = "");
+      this.form.subject = "", 
+      this.form.teacherName = "", 
+      this.form.helpInfo = "";
+      modalDisplay: false
       // Höndla input errors, sjá vue mastery video.
     }
   }

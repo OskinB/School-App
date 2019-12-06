@@ -38,11 +38,11 @@
         </tr>
 
         <!-- *** Column info *** -->
-        <tr class="waitingList-card-info" v-for="help in waitingList" v-bind:key="help.id">
+        <tr class="waitingList-card-info" v-for="help in waitingList" v-bind:key="help.helpInfo">
           <td>
             <div class="selected-subject">
               <h3>{{help.subject}}</h3>
-              <img :src="getImgUrl(help.subjectIcon)" alt="Áfangi" />
+              <!-- <img :src="getImgUrl(help.subjectIcon)" alt="Áfangi" /> -->
             </div>
           </td>
 
@@ -53,14 +53,14 @@
           <td>
             <div class="selected-person">
               <h3>{{help.teacherName}}</h3>
-              <img :src="getImgUrl(help.teacherAvatar)" alt="Kennari" />
+              <!-- <img :src="getImgUrl(help.teacherAvatar)" alt="Kennari" /> -->
             </div>
           </td>
 
           <td>
             <div class="selected-person">
               <h3>{{help.studentName}}</h3>
-              <img :src="getImgUrl(help.studentAvatar)" alt="Nemandi" />
+              <!-- <img :src="getImgUrl(help.studentAvatar)" alt="Nemandi" /> -->
             </div>
           </td>
 
@@ -84,7 +84,7 @@
         </div>
       </div>
     </section>
-    <ModalHelpRequest @help-submitted="ModalAddHelp" />
+    <ModalHelpRequest v-on:help-submitted="ModalAddHelp" />
   </div>
 </template>
 
@@ -120,8 +120,7 @@ export default {
           studentAvatar: "student-avatar.svg",
           time: 5
         }
-      ],
-      list: []
+      ]
     };
   },
   computed: {},
@@ -130,7 +129,8 @@ export default {
       return require("../../assets/" + pic);
     },
     ModalAddHelp(addHelp) {
-      this.list.push(addHelp);
+      this.waitingList.push(addHelp);
+      console.log(this.waitingList);
     }
   }
 };

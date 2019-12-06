@@ -25,12 +25,9 @@ export default {
     };
   },
   computed: {
-    testing() {
-      console.log("Hæj frá Home.vue");
-    }
+
   },
   mounted() {
-    console.log("Hæjjjjaaaaa frá Home.vue");
   }
 };
 </script>
