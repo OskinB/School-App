@@ -5,7 +5,6 @@
     </div>
     <WaitingList />
     <Interviews />
-    <ModalHelpRequest />
   </div>
 </template>
 
@@ -13,14 +12,12 @@
 // @ is an alias to /src
 import WaitingList from "@/components/WaitingList.vue";
 import Interviews from "@/components/Interviews.vue";
-import ModalHelpRequest from "@/components/modals/HelpRequest.vue";
 
 export default {
   name: "home",
   components: {
     WaitingList,
-    Interviews,
-    ModalHelpRequest
+    Interviews
   },
   data() {
     return {

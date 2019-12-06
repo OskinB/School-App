@@ -20,9 +20,11 @@
 import AllWaitingList from "./AllWaitingList";
 
 export default {
+  props: {},
   components: {
     AllWaitingList
-  }
+  },
+  methods: {}
 };
 </script>
 

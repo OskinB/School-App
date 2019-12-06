@@ -26,7 +26,9 @@
 
     <!-- *** DESKTOP *** -->
     <section id="dt-waitingList">
+      <h2 v-if="!waitingList.length">Enginn á biðlista</h2>
       <table class="card-table">
+        <!-- *** Column title *** -->
         <tr class="card-info-title">
           <th>Áfangi</th>
           <th>Lýsing</th>
@@ -35,34 +37,35 @@
           <th>Tími</th>
         </tr>
 
-        <tr class="waitingList-card-info">
+        <!-- *** Column info *** -->
+        <tr class="waitingList-card-info" v-for="help in waitingList" v-bind:key="help.id">
           <td>
             <div class="selected-subject">
-              <h3>Figma</h3>
-              <img src="../../assets/figma-img.svg" alt="Áfangi" />
+              <h3>{{help.subject}}</h3>
+              <img :src="getImgUrl(help.subjectIcon)" alt="Áfangi" />
             </div>
           </td>
 
           <td>
-            <h3>Hönnunarpælingar</h3>
+            <h3>{{help.helpInfo}}</h3>
           </td>
 
           <td>
             <div class="selected-person">
-              <h3>Jonathan</h3>
-              <img src="../../assets/teacher-avatar.svg" alt="Kennari" />
+              <h3>{{help.teacherName}}</h3>
+              <img :src="getImgUrl(help.teacherAvatar)" alt="Kennari" />
             </div>
           </td>
 
           <td>
             <div class="selected-person">
-              <h3>Ósk Björns</h3>
-              <img src="../../assets/student-avatar.svg" alt="Nemandi" />
+              <h3>{{help.studentName}}</h3>
+              <img :src="getImgUrl(help.studentAvatar)" alt="Nemandi" />
             </div>
           </td>
 
           <td>
-            <h3>5 mín</h3>
+            <h3>{{help.time}} mín</h3>
           </td>
           <td>
             <img src="../../assets/arrow-down.svg" alt="Sjá meira" />
@@ -77,15 +80,60 @@
 
       <div class="btn-holder" id="dt-interviews-btn">
         <div class="btn-add-lg">
-          <a class="btn-add-lg" href="#open-modal">Bæta við</a>
+          <a class="btn-add-lg" href="#open-wait">Bæta við</a>
         </div>
       </div>
     </section>
+    <ModalHelpRequest @help-submitted="ModalAddHelp" />
   </div>
 </template>
 
 <script>
-export default {};
+import ModalHelpRequest from "../modals/HelpRequest";
+
+export default {
+  components: {
+    ModalHelpRequest
+  },
+  props: {},
+  data() {
+    return {
+      waitTime: 10,
+      waitingList: [
+        {
+          subject: "Vefþróun",
+          subjectIcon: "figma-img.svg",
+          helpInfo: "Skil ekki mixins",
+          teacherName: "Pedro",
+          teacherAvatar: "teacher-avatar.svg",
+          studentName: "Ósk",
+          studentAvatar: "student-avatar.svg",
+          time: 5
+        },
+        {
+          subject: "JavaScript",
+          subjectIcon: "javascript-img.svg",
+          helpInfo: "Virkar ekki",
+          teacherName: "Ellert Smári",
+          teacherAvatar: "teacher-avatar.svg",
+          studentName: "Æsa",
+          studentAvatar: "student-avatar.svg",
+          time: 5
+        }
+      ],
+      list: []
+    };
+  },
+  computed: {},
+  methods: {
+    getImgUrl(pic) {
+      return require("../../assets/" + pic);
+    },
+    ModalAddHelp(addHelp) {
+      this.list.push(addHelp);
+    }
+  }
+};
 </script>
 
 

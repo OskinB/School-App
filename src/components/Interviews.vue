@@ -30,8 +30,11 @@
       </div>
     </section>
 
+    <!-- *** DESKTOP *** -->
     <section id="dt-interviews">
+      <h2 v-if="!interviewList.length">Ekkert viðtal skráð</h2>
       <table class="card-table">
+        <!-- *** Column title *** -->
         <tr class="card-info-title">
           <th>Dags.</th>
           <th>Áfangi</th>
@@ -40,31 +43,36 @@
           <th>Vægi</th>
         </tr>
 
-        <tr class="waitingList-card-info">
+        <!-- *** Column info *** -->
+        <tr
+          class="waitingList-card-info"
+          v-for="interview in interviewList"
+          v-bind:key="interview.id"
+        >
           <td>
-            <h3>24.apríl</h3>
+            <h3>{{interview.date}}</h3>
           </td>
 
           <td>
             <div class="selected-subject">
-              <h3>JavaScript</h3>
-              <img src="../assets/javascript-img.svg" alt="Áfangi" />
+              <h3>{{interview.subject}}</h3>
+              <img :src="getImgUrl(interview.subjectIcon)" alt="Áfangi" />
             </div>
           </td>
 
           <td>
-            <h3>Munnlegt próf</h3>
+            <h3>{{interview.info}}</h3>
           </td>
 
           <td>
             <div class="selected-person">
-              <h3>Ellert Smári</h3>
-              <img src="../assets/teacher-avatar.svg" alt="Kennari" />
+              <h3>{{interview.teacherName}}</h3>
+              <img :src="getImgUrl(interview.teacherAvatar)" alt="Kennari" />
             </div>
           </td>
 
           <td>
-            <h3>20%</h3>
+            <h3>{{interview.value}}%</h3>
           </td>
           <td>
             <div class="btn-add-sm">
@@ -76,15 +84,51 @@
 
       <div class="btn-holder" id="dt-interviews-btn">
         <div class="btn-add-lg">
-          <a class="btn-add-lg" href="#open-modal2">Bæta við</a>
+          <a class="btn-add-lg" href="#open-inter">Bæta við</a>
         </div>
       </div>
     </section>
+    <ModalAddInterview />
   </div>
 </template>
 
 <script>
-export default {};
+import ModalAddInterview from "./modals/AddInterview";
+
+export default {
+  components: {
+    ModalAddInterview
+  },
+  data() {
+    return {
+      interviewList: [
+        {
+          date: "24.apríl",
+          subject: "JavaScript",
+          subjectIcon: "javascript-img.svg",
+          info: "Munnlegt próf",
+          teacherName: "Ellert Smári",
+          teacherAvatar: "teacher-avatar.svg",
+          value: 20
+        },
+        {
+          date: "11.apríl",
+          subject: "Hönnun",
+          subjectIcon: "figma-img.svg",
+          info: "Figma próf",
+          teacherName: "Jonathan",
+          teacherAvatar: "teacher-avatar.svg",
+          value: 10
+        }
+      ]
+    };
+  },
+  methods: {
+    getImgUrl(pic) {
+      return require("../assets/" + pic);
+    }
+  }
+};
 </script>
 
 
