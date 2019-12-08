@@ -1,65 +1,65 @@
 <template>
-  <div>
-    <div id="open-wait" class="modal-window" v-show="modalDisplay">
-      <div>
-        <a href="#Close" title="Loka" class="modal-close">X</a>
+  <transition name="modal-fade">
+    <div class="modal-backdrop">
+      <div class="modal" role="dialog">
+        <a class="modal-close" @click="close" title="Loka">X</a>
+
         <form action @submit.prevent="onSubmit">
           <h1>Þarftu hjálp?</h1>
-          <div class="row">
-            <div class="col-75">
-              <select id="subjectName" name="subjectName" v-model="form.subject" required>
-                <option value="HTML/CSS">HTML/CSS</option>
-                <option value="JavaScript">JavaScript</option>
-                <option value="Hönnun">Hönnun</option>
-                <option value="Vefþróun">Vefþróun</option>
-              </select>
-            </div>
+          <div class="form-element">
+            <select id="subjectName" name="subjectName" v-model="form.subject" required>
+              <option value disabled selected hidden class="disabled">Veldu áfanga</option>
+              <option value="HTML/CSS">HTML/CSS</option>
+              <option value="JavaScript">JavaScript</option>
+              <option value="Hönnun">Hönnun</option>
+              <option value="Vefþróun">Vefþróun</option>
+            </select>
           </div>
-          <div class="row">
-            <div class="col-75">
-              <select id="teachers" name="teachers" v-model="form.teacherName" required>
-                <option value="Smári">Smári</option>
-                <option value="Pedro">Pedro</option>
-                <option value="Jonathan">Jonathan</option>
-              </select>
-            </div>
+          <div class="form-element">
+            <select id="teachers" name="teachers" v-model="form.teacherName" required>
+              <option value disabled selected hidden>Veldu kennara</option>
+              <option value="Smári">Smári</option>
+              <option value="Pedro">Pedro</option>
+              <option value="Jonathan">Jonathan</option>
+            </select>
           </div>
-          <div class="row">
-            <div class="col-75">
-              <textarea
-                id="info"
-                name="info"
-                placeholder="Nánari lýsing"
-                style="height:200px"
-                draggable="false"
-                v-model="form.helpInfo"
-                required
-              ></textarea>
-            </div>
+          <div class="form-element">
+            <textarea
+              id="info"
+              name="info"
+              placeholder="Nánari lýsing"
+              draggable="false"
+              v-model="form.helpInfo"
+              required
+            ></textarea>
           </div>
-          <div class="row">
-            <input type="submit" value="Staðfesta" />
+          <div class="btn-holder-modal">
+            <div class="btn-confirm-md">
+              <input type="submit" value="Staðfesta" />
+            </div>
           </div>
         </form>
       </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
 export default {
-
+  name: "ModalAddHelp",
   data() {
     return {
       form: {
         subject: "",
         teacherName: "",
         helpInfo: ""
-      },
-      modalDisplay: true
+      }
     };
   },
   methods: {
+    close() {
+      this.$emit("close");
+    },
     onSubmit() {
       let addHelp = {
         subject: this.form.subject,
@@ -69,10 +69,10 @@ export default {
         studentName: "Nemi"
       };
       this.$emit("help-submitted", addHelp);
-      this.form.subject = "", 
-      this.form.teacherName = "", 
-      this.form.helpInfo = "";
-      modalDisplay: false
+      this.$emit("close");
+      (this.form.subject = ""),
+        (this.form.teacherName = ""),
+        (this.form.helpInfo = "");
       // Höndla input errors, sjá vue mastery video.
     }
   }
@@ -80,75 +80,7 @@ export default {
 </script>
 
 
-<style lang="scss" scope>
-form {
-  h1 {
-    font-size: 24px;
-    line-height: 34px;
-    color: $navy-blue;
-    font-weight: bold;
-    text-align: left;
-  }
-}
-input[type="text"],
-select,
-textarea {
-  background-color: $light-grey;
-  border-radius: 5px;
-  color: black;
-  border: none;
-  margin: 0.5rem;
-  width: 100%;
-  padding: 1rem;
-}
-// textarea {
-//   overflow: scroll;
-//   resize: none;
-// }
-
-input[type="submit"] {
-  background-color: #4caf50;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  float: right;
-}
-
-input[type="submit"]:hover {
-  background-color: #45a049;
-}
-
-.col-25 {
-  float: left;
-  width: 25%;
-  margin-top: 6px;
-}
-
-.col-75 {
-  float: left;
-  width: 75%;
-  margin-top: 6px;
-}
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 600px) {
-  .col-25,
-  .col-75,
-  input[type="submit"] {
-    width: 100%;
-    margin-top: 0;
-  }
-}
-
+<style lang="scss" >
 // ********** MEDIA QUERIES **********
 
 // *** MOBILE SIZE ***

@@ -12,24 +12,18 @@
         </div>
       </div>
     </section>
-    <AllWaitingList />
   </div>
 </template>
 
 <script>
-import AllWaitingList from "./AllWaitingList";
-
 export default {
   props: {},
-  components: {
-    AllWaitingList
-  },
   methods: {}
 };
 </script>
 
 
-<style lang="scss" scope>
+<style lang="scss" >
 // *** MOBILE ***
 .student-card {
   @include card;

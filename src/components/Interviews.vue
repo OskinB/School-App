@@ -82,7 +82,7 @@
         </tr>
       </table>
 
-      <div class="btn-holder" id="dt-interviews-btn">
+      <div class="btn-holder" id="dt-interviews-btn" v-if="isTeacher">
         <div class="btn-add-lg">
           <a class="btn-add-lg" href="#open-inter">Bæta við</a>
         </div>
@@ -96,6 +96,7 @@
 import ModalAddInterview from "./modals/AddInterview";
 
 export default {
+  props: ["isTeacher"],
   components: {
     ModalAddInterview
   },
@@ -132,7 +133,7 @@ export default {
 </script>
 
 
-<style lang="scss" scope>
+<style lang="scss" >
 .page-title {
   color: $navy-blue;
   margin: 32px 0 48px;

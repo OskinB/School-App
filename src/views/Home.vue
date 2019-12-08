@@ -1,10 +1,13 @@
 <template>
-  <div class="container">
+  <div class="container" id="home">
     <div class="user-greeting">
-      <h1>Góðan daginn, Ósk</h1>
+      <h1>Góðan daginn, {{logedUserInfo.name}}</h1>
+      <img :src="getImgUrl(logedUserInfo.avatar)" alt="Notandi" />
+      <hr />
+      <h3>{{isTeacher}}</h3>
     </div>
-    <WaitingList />
-    <Interviews />
+    <WaitingList :isTeacher="isTeacher" />
+    <Interviews :isTeacher="isTeacher" />
   </div>
 </template>
 
@@ -14,32 +17,47 @@ import WaitingList from "@/components/WaitingList.vue";
 import Interviews from "@/components/Interviews.vue";
 
 export default {
-  name: "home",
+  name: "Home",
+  props: ["logedUserInfo"],
   components: {
     WaitingList,
     Interviews
   },
   data() {
     return {
-      teacher: false
+      isTeacher: false
     };
   },
-  computed: {
-
+  methods: {
+    getImgUrl(pic) {
+      return require("../assets/" + pic);
+    },
+    getAccess() {
+      if (this.logedUserInfo.teacher === true) {
+        this.isTeacher = true;
+      }
+    }
   },
   mounted() {
+    this.getAccess();
   }
 };
 </script>
 
-<style lang="scss" scope>
+<style lang="scss" >
 .user-greeting {
   padding: 40px 0px;
+  @include flex(row, flex-start, center);
   h1 {
     font-size: 1.5rem;
     color: $navy-blue;
     text-align: left;
     font-weight: bold;
+  }
+  img {
+    height: 41px;
+    width: 41px;
+    margin-left: 8px;
   }
 }
 

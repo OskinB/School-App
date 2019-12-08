@@ -3,25 +3,61 @@
     <img src="../assets/Tskoli-logo.svg" alt="Tækniskólinn" />
     <h1>Velkomin/n</h1>
     <div class="login-input">
-      <input type="text" placeholder="Nafn" />
-      <input type="text" placeholder="Lykilorð" />
+      <input type="text" name="username" v-model="input.username" placeholder="Notendanafn" />
+      <input type="password" name="password" v-model="input.password" placeholder="Lykilorð" />
       <div class="forgot-pw">
         <h4>Gleymt lykilorð?</h4>
       </div>
     </div>
-    <div class="login-btns">
+    <div class="btn-holder-modal">
       <div class="btn-login">
-        <h3>Skrá inn</h3>
+        <button type="button" class="btn-login" v-on:click="login()">Skrá inn</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  name: "LoginPage",
+  data() {
+    return {
+      input: {
+        username: "",
+        password: ""
+      }
+    };
+  },
+  methods: {
+    login() {
+      // Laga útfærslu hér !!!!!!
+      if (this.input.username != "" && this.input.password != "") {
+        if (
+          this.input.username == this.$parent.student.username &&
+          this.input.password == this.$parent.student.password
+        ) {
+          this.$emit("authenticated", true);
+          this.$emit("logedUserInfo", this.$parent.student);
+          this.$router.replace({ name: "Home" });
+        } else if (
+          this.input.username == this.$parent.teacher.username &&
+          this.input.password == this.$parent.teacher.password
+        ) {
+          this.$emit("authenticated", true);
+          this.$emit("logedUserInfo", this.$parent.teacher);
+          this.$router.replace({ name: "Home" });
+        } else {
+          console.log("The username and / or password is incorrect");
+        }
+      } else {
+        console.log("A username and password must be present");
+      }
+    }
+  }
+};
 </script>
 
-<style lang="scss" scope>
+<style lang="scss">
 .login {
   @include flex(column, center, center);
   background-color: $white;

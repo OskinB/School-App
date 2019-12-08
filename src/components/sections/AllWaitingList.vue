@@ -78,27 +78,34 @@
         </tr>
       </table>
 
+      <!-- * IF STUDENT - SHOW ADD BTN * -->
+      <!-- <div class="btn-holder" id="dt-interviews-btn" v-if="teacherIs === false"> -->
       <div class="btn-holder" id="dt-interviews-btn">
         <div class="btn-add-lg">
-          <a class="btn-add-lg" href="#open-wait">Bæta við</a>
+          <button type="button" class="btn-add-lg" @click="showModal">Bæta við</button>
         </div>
       </div>
     </section>
-    <ModalHelpRequest v-on:help-submitted="ModalAddHelp" />
+    <ModalHelpRequest v-show="isModalVisible" @help-submitted="ModalAddHelp" @close="closeModal" />
   </div>
 </template>
 
 <script>
 import ModalHelpRequest from "../modals/HelpRequest";
+import AllWaitingList from "@/components/sections/AllWaitingList";
 
 export default {
+  name: "AllWaitingList",
+  props: ["teacherIs"],
   components: {
     ModalHelpRequest
   },
   props: {},
   data() {
     return {
+      isModalVisible: false,
       waitTime: 10,
+      isTeacher: "",
       waitingList: [
         {
           subject: "Vefþróun",
@@ -130,14 +137,28 @@ export default {
     },
     ModalAddHelp(addHelp) {
       this.waitingList.push(addHelp);
-      console.log(this.waitingList);
-    }
+      this.waitTime += 5;
+      this.$emit("get-total-time", this.waitTime);
+    },
+    showModal() {
+      this.isModalVisible = true;
+    },
+    closeModal() {
+      this.isModalVisible = false;
+    },
+    getAccess() {
+      this.isTeacher = this.teacherIs;
+    },
+    totalTime() {}
+  },
+  mounted() {
+    // this.getAccess();
   }
 };
 </script>
 
 
-<style lang="scss" scope>
+<style lang="scss" >
 // ********** MEDIA QUERIES **********
 
 // *** MOBILE SIZE ***

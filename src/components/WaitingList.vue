@@ -6,10 +6,18 @@
         <h1>Biðlisti</h1>
       </div>
       <div class="total-waiting-time" id="waitingListTime-display">
-        <h2>10 mín bið</h2>
+        <h2>{{ waitTime }} mín bið</h2>
+        <br />
+        <h3>{{isTeacher}}</h3>
       </div>
     </section>
-    <SelectTeacher />
+
+    <SelectTeacher v-if="isTeacher === false && showCard === true" @click.native="showNext" />
+    <AllWaitingList
+      v-if="isTeacher || showList"
+      :teacherIs="isTeacher"
+      @get-total-time="showTotalTime"
+    />
   </div>
 </template>
 
@@ -18,15 +26,32 @@ import SelectTeacher from "@/components/sections/Student-selectTeacher";
 import AllWaitingList from "@/components/sections/AllWaitingList";
 
 export default {
+  props: ["isTeacher"],
   components: {
     SelectTeacher,
     AllWaitingList
+  },
+  data() {
+    return {
+      showList: false,
+      showCard: true,
+      waitTime: 10
+    };
+  },
+  methods: {
+    showNext() {
+      this.showList = true;
+      this.showCard = false;
+    },
+    showTotalTime(time) {
+      this.waitTime = time;
+    }
   }
 };
 </script>
 
 
-<style lang="scss" scope>
+<style lang="scss">
 .page-title {
   @include flex(row, space-between, center);
   color: $navy-blue;

@@ -10,9 +10,13 @@ button {
 }
 
 .btn-holder {
-    display: flex;
-    justify-content: flex-end;
+    @include flex(row, flex-end, center);
     margin: 200px 0 100px;
+}
+
+.btn-holder-modal {
+    @include flex(row, flex-end, center);
+    margin: 8px 0;
 }
 
 .btn-login {
@@ -70,6 +74,7 @@ button {
         opacity: 1;
     }
 }
+
 
 // ********** MEDIA QUERIES **********
 
