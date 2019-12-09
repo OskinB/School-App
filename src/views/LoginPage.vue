@@ -3,8 +3,8 @@
     <img src="../assets/Tskoli-logo.svg" alt="Tækniskólinn" />
     <h1>Velkomin/n</h1>
     <div class="login-input">
-      <input type="text" name="username" v-model="input.username" placeholder="Notendanafn" />
-      <input type="password" name="password" v-model="input.password" placeholder="Lykilorð" />
+      <input type="text" v-model="input.username" placeholder="Notendanafn" />
+      <input type="password" v-model="input.password" placeholder="Lykilorð" />
       <div class="forgot-pw">
         <h4>Gleymt lykilorð?</h4>
       </div>
@@ -30,7 +30,6 @@ export default {
   },
   methods: {
     login() {
-      // Laga útfærslu hér !!!!!!
       if (this.input.username != "" && this.input.password != "") {
         if (
           this.input.username == this.$parent.student.username &&

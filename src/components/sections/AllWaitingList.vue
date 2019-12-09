@@ -6,14 +6,14 @@
         <div class="card-top">
           <h4>{{help.time}} mín</h4>
           <div class="subject-icon">
-            <img src="../../assets/figma-img.svg" alt="Áfangi" />
+            <img :src="getImgSubject(help.subject)" alt="Áfangi" />
           </div>
         </div>
         <div class="mobile-card-info">
           <h2>{{help.helpInfo}}</h2>
           <div class="selected-person">
             <h3>{{help.studentName}}</h3>
-            <img src="../../assets/student-avatar.svg" alt="Nemandi" />
+            <img :src="getImgStudent(help.studentAvatar)" alt="Nemandi" />
           </div>
         </div>
       </div>
@@ -52,7 +52,7 @@
 
           <td>
             <div class="selected-person">
-              <!-- <img :src="getImgUrl(help.teacherAvatar)" alt="Kennari" /> -->
+              <img :src="getImgTeacher(help.teacherAvatar)" alt="Kennari" />
               <h3>{{help.teacherName}}</h3>
             </div>
           </td>
@@ -68,7 +68,7 @@
             <h3>{{help.time}} mín</h3>
           </td>
           <td>
-            <img src="../../assets/arrow-down.svg" alt="Sjá meira" />
+            <h3>PROPS: {{logedUserInfo.name}}</h3>
           </td>
           <!-- * IF TEACHER - SHOW ON EVERY CARD* -->
           <!-- * IF STUDENT - SHOW ON YOUR OWN CARD* -->
@@ -79,14 +79,21 @@
       </table>
 
       <!-- * IF STUDENT - SHOW ADD BTN * -->
-      <!-- <div class="btn-holder" id="dt-interviews-btn" v-if="teacherIs === false"> -->
+      <div>
+        <button @click="backToSelect">Til baka</button>
+      </div>
       <div class="btn-holder" id="dt-interviews-btn">
         <div class="btn-add-lg">
           <button type="button" class="btn-add-lg" @click="showModal">Bæta við</button>
         </div>
       </div>
     </section>
-    <ModalHelpRequest v-show="isModalVisible" @help-submitted="ModalAddHelp" @close="closeModal" />
+    <ModalHelpRequest
+      v-show="isModalVisible"
+      @help-submitted="ModalAddHelp"
+      @close="closeModal"
+      v-bind="$props"
+    />
   </div>
 </template>
 
@@ -96,23 +103,23 @@ import AllWaitingList from "@/components/sections/AllWaitingList";
 
 export default {
   name: "AllWaitingList",
-  props: ["teacherIs"],
+  props: {
+    logedUserInfo: Object
+  },
   components: {
     ModalHelpRequest
   },
-  props: {},
   data() {
     return {
       isModalVisible: false,
       waitTime: 10,
-      isTeacher: "",
       waitingList: [
         {
           subject: "Vefþróun",
           helpInfo: "Can't display from my PHP array",
           teacherName: "Pedro",
-          teacherAvatar: "teacher-avatar.svg",
-          studentName: "Ósk",
+          teacherAvatar: "pedro-avatar.svg",
+          studentName: "Klara",
           studentAvatar: "student1-avatar.svg",
           time: 5
         },
@@ -120,7 +127,7 @@ export default {
           subject: "JavaScript",
           helpInfo: ".filter í .map er ekki að virka rétt",
           teacherName: "Smári",
-          teacherAvatar: "teacher-avatar.svg",
+          teacherAvatar: "smari-avatar.svg",
           studentName: "Siggi",
           studentAvatar: "student2-avatar.svg",
           time: 5
@@ -144,6 +151,9 @@ export default {
     getImgStudent(pic) {
       return require("../../assets/" + pic);
     },
+    getImgTeacher(pic) {
+      return require("../../assets/" + pic);
+    },
     ModalAddHelp(addHelp) {
       this.waitingList.push(addHelp);
       this.waitTime += 5;
@@ -155,12 +165,13 @@ export default {
     closeModal() {
       this.isModalVisible = false;
     },
-    getAccess() {
-      this.isTeacher = this.teacherIs;
-    }
+    backToSelect() {
+      this.$emit("back-to-select");
+    },
+    getAccess() {}
   },
   mounted() {
-    console.log(this.teacherIs);
+    console.log();
   }
 };
 </script>

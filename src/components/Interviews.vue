@@ -24,7 +24,7 @@
           </div>
         </div>
       </div>
-      <div class="mobile-btn-add" id="mb-interviews-btn" v-if="isTeacher" @click="showModal">
+      <div class="mobile-btn-add" id="mb-interviews-btn" @click="showModal">
         <h3>Bæta við</h3>
         <img src="../assets/btn-add-icon.svg" alt="Bæta við" />
       </div>
@@ -79,10 +79,13 @@
               <h3>Skoða</h3>
             </div>
           </td>
+          <td>
+            <h3>PROPS: {{logedUserInfo.name}}</h3>
+          </td>
         </tr>
       </table>
 
-      <div class="btn-holder" id="dt-interviews-btn" v-if="isTeacher">
+      <div class="btn-holder" id="dt-interviews-btn">
         <div class="btn-add-lg">
           <button type="button" class="btn-add-lg" @click="showModal">Bæta við</button>
         </div>
@@ -92,6 +95,7 @@
       v-show="isModalVisible"
       @interview-submitted="ModalAddInterview"
       @close="closeModal"
+      v-bind="$props"
     />
   </div>
 </template>
@@ -100,7 +104,9 @@
 import ModalAddInterview from "./modals/AddInterview";
 
 export default {
-  props: ["isTeacher"],
+  props: {
+    logedUserInfo: Object
+  },
   components: {
     ModalAddInterview
   },
@@ -114,7 +120,7 @@ export default {
           subjectIcon: "javascript-img.svg",
           info: "Munnlegt próf",
           teacherName: "Smári",
-          teacherAvatar: "teacher-avatar.svg",
+          teacherAvatar: "smari-avatar.svg",
           value: 20
         },
         {
@@ -141,7 +147,15 @@ export default {
     },
     ModalAddInterview(addInterview) {
       this.interviewList.push(addInterview);
+    },
+    getAccess() {
+      // if (this.logedUserInfo.teacher === true) {
+      //   this.isTeacher = true;
+      // }
     }
+  },
+  mounted() {
+    // this.getAccess(this.logedUserInfo);
   }
 };
 </script>

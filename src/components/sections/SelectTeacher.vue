@@ -11,6 +11,15 @@
           <img src="../../assets/teacher-avatar.svg" alt="Kennari" />
         </div>
       </div>
+      <div class="student-card">
+        <div class="subject-icon">
+          <img src="../../assets/vefthroun-img.svg" alt="Áfangi" />
+        </div>
+        <div class="teacher-name">
+          <h2>Pedro</h2>
+          <img src="../../assets/pedro-avatar.svg" alt="Kennari" />
+        </div>
+      </div>
     </section>
   </div>
 </template>
@@ -59,20 +68,23 @@ export default {
 
 // *** DESKTOP SIZE ***
 @media only screen and (min-width: 900px) {
-  .student-card {
-    width: 212px;
-    height: auto;
-    margin: 64px 0;
-    .teacher-name {
-      @include flex(column-reverse, center, center);
-      padding: 56px 53px 32px;
+  .student-display {
+    @include flex(row, flex-start, center);
+    .student-card {
+      width: 212px;
+      height: auto;
+      margin: 64px;
+      .teacher-name {
+        @include flex(column-reverse, center, center);
+        padding: 56px 53px 32px;
 
-      h2 {
-        margin: 32px 0 0;
-      }
-      img {
-        height: 72px;
-        width: 71px;
+        h2 {
+          margin: 32px 0 0;
+        }
+        img {
+          height: 72px;
+          width: 71px;
+        }
       }
     }
   }

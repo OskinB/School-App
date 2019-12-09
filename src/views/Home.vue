@@ -3,11 +3,9 @@
     <div class="user-greeting">
       <h1>Góðan daginn, {{logedUserInfo.name}}</h1>
       <img :src="getImgUrl(logedUserInfo.avatar)" alt="Notandi" />
-      <!-- <hr /> -->
-      <!-- <h3>{{isTeacher}}</h3> -->
     </div>
-    <WaitingList :isTeacher="isTeacher" />
-    <Interviews :isTeacher="isTeacher" />
+    <WaitingList v-bind="$props" />
+    <Interviews v-bind="$props" />
   </div>
 </template>
 
@@ -18,29 +16,18 @@ import Interviews from "@/components/Interviews.vue";
 
 export default {
   name: "Home",
-  props: ["logedUserInfo"],
+  props: { logedUserInfo: Object },
   components: {
     WaitingList,
     Interviews
   },
   data() {
-    return {
-      isTeacher: false
-    };
+    return {};
   },
   methods: {
     getImgUrl(pic) {
       return require("../assets/" + pic);
-    },
-    getAccess() {
-      if (this.logedUserInfo.teacher === true) {
-        this.isTeacher = true;
-      }
     }
-  },
-  mounted() {
-    this.getAccess(this.logedUserInfo);
-    console.log();
   }
 };
 </script>

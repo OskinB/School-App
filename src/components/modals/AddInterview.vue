@@ -46,7 +46,7 @@
           </div>
           <div class="form-element-time">
             <h2>Veldu tíma sem eru í boði</h2>
-            <div class="time-holder" id="interviewTime" name="interviewTime" required>
+            <div class="time-holder" id="interviewTime" name="interviewTime">
               <div class="time">
                 <input type="checkbox" id="9" value="09:00" v-model="form.time" />
                 <label for="9">09:00</label>
@@ -93,6 +93,9 @@
 <script>
 export default {
   name: "ModalAddHelp",
+  props: {
+    logedUserInfo: Object
+  },
   data() {
     return {
       form: {
@@ -117,9 +120,9 @@ export default {
         date: this.form.day,
         time: this.form.time,
         info: this.form.interviewInfo,
-        subjectIcon: "javascript-img.svg",
-        teacherName: "Loged in Kennari",
-        teacherAvatar: "teacher-avatar.svg"
+        teacherName: this.logedUserInfo.name,
+        teacherAvatar: this.logedUserInfo.avatar,
+        subjectIcon: "javascript-img.svg"
       };
       this.$emit("interview-submitted", addInterview);
       this.$emit("close");

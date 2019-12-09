@@ -23,8 +23,8 @@
         background: $white;
         box-shadow: 0 0 6px 1px;
         overflow: auto;
-        // width: 92%;
-        width: 345px;
+        width: 92%;
+        // width: 345px;
         // width: 500px;
         position: relative;
         top: 16px;
@@ -54,7 +54,9 @@
 
 // *** DESKTOP SIZE ***
 @media only screen and (min-width: 900px) {
-    .modal {
-        width: 500px;
+    .modal-backdrop {
+        .modal {
+            width: 500px;
+        }
     }
 }

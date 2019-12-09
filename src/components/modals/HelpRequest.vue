@@ -48,6 +48,9 @@
 <script>
 export default {
   name: "ModalAddHelp",
+  props: {
+    logedUserInfo: Object
+  },
   data() {
     return {
       form: {
@@ -66,9 +69,9 @@ export default {
         subject: this.form.subject,
         teacherName: this.form.teacherName,
         helpInfo: this.form.helpInfo,
+        studentName: this.logedUserInfo.name,
+        studentAvatar: this.logedUserInfo.avatar,
         time: 5,
-        studentName: "Loged in Nemi",
-        studentAvatar: "student0-avatar.svg",
         teacherAvatar: "teacher-avatar.svg"
       };
       this.$emit("help-submitted", addHelp);

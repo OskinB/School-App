@@ -5,16 +5,17 @@
         <img src="../assets/waitinglist-img.svg" alt="Biðlisti" />
         <h1>Biðlisti</h1>
       </div>
-      <div class="total-waiting-time" id="waitingListTime-display">
+      <div class="total-waiting-time" id="waitingListTime-display" v-if="showCard === false">
         <h2>{{ waitTime }} mín bið</h2>
       </div>
     </section>
 
-    <SelectTeacher v-if="isTeacher === false && showCard === true" @click.native="showNext" />
+    <SelectTeacher v-if="showCard === true" @click.native="showNext" />
     <AllWaitingList
-      v-if="isTeacher || showList"
-      :teacherIs="isTeacher"
+      v-if="showList"
       @get-total-time="showTotalTime"
+      @back-to-select="showCardAgain"
+      v-bind="$props"
     />
   </div>
 </template>
@@ -24,7 +25,9 @@ import SelectTeacher from "@/components/sections/SelectTeacher";
 import AllWaitingList from "@/components/sections/AllWaitingList";
 
 export default {
-  props: ["isTeacher"],
+  props: {
+    logedUserInfo: Object
+  },
   components: {
     SelectTeacher,
     AllWaitingList
@@ -43,6 +46,10 @@ export default {
     },
     showTotalTime(time) {
       this.waitTime = time;
+    },
+    showCardAgain() {
+      this.showCard = true;
+      this.showList = false;
     }
   }
 };
@@ -74,11 +81,13 @@ export default {
 
 // *** DESKTOP SIZE ***
 @media only screen and (min-width: 900px) {
-  .total-waiting-time {
-    margin-right: 40px;
-    h2 {
-      font-size: 32px;
-      line-height: 46px;
+  .page-title {
+    .total-waiting-time {
+      margin-right: 40px;
+      h2 {
+        font-size: 32px;
+        line-height: 46px;
+      }
     }
   }
 }

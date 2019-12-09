@@ -1,12 +1,15 @@
 <template>
   <div id="app">
     <div id="nav" v-show="authenticated">
-      <router-link v-if="authenticated" to="/login" v-on:click.native="logout()" replace>Útskráning</router-link>
+      <router-link v-if="authenticated" to="/login" @click.native="logout()" replace>
+        <img src="./assets/log-out.svg" alt="img" />
+        <h2>Útskráning</h2>
+      </router-link>
     </div>
     <router-view
       @authenticated="setAuthenticated"
       @logedUserInfo="userInfo"
-      v-bind:logedUserInfo="logedUserInfo"
+      :logedUserInfo="logedUserInfo"
     />
   </div>
 </template>
@@ -26,8 +29,8 @@ export default {
         teacher: false
       },
       teacher: {
-        username: "smari",
-        password: "smari",
+        username: "sm",
+        password: "sm",
         name: "Smári",
         avatar: "smari-avatar.svg",
         teacher: true
@@ -61,16 +64,21 @@ export default {
 
 #nav {
   padding: 16px 0;
+  @include flex(row, flex-end, center);
 
   a {
-    font-weight: bold;
-    color: $light-blue;
-    font-size: 14px;
-    padding: 8px 8px;
-    margin: 8px 8px;
-
-    &:hover {
-      color: $navy-blue;
+    @include flex(row, flex-end, center);
+    padding: 8px;
+    margin: 8px 8px 0 16px;
+    h2 {
+      font-size: 14px;
+      font-weight: bold;
+      color: $light-blue;
+      margin-left: 8px;
+    }
+    img {
+      height: 16px;
+      width: 16px;
     }
   }
 }
@@ -83,7 +91,23 @@ export default {
     a {
       font-size: 16px;
       padding: 8px 16px;
-      margin: 8px 56px;
+      margin: 8px 32px;
+      h2 {
+        display: none;
+        font-size: 18px;
+        margin-left: 8px;
+      }
+
+      &:hover {
+        h2 {
+          display: block;
+        }
+      }
+
+      img {
+        height: 24px;
+        width: 24px;
+      }
     }
   }
 }
