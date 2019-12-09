@@ -7,8 +7,6 @@
       </div>
       <div class="total-waiting-time" id="waitingListTime-display">
         <h2>{{ waitTime }} mín bið</h2>
-        <br />
-        <h3>{{isTeacher}}</h3>
       </div>
     </section>
 
@@ -22,7 +20,7 @@
 </template>
 
 <script>
-import SelectTeacher from "@/components/sections/Student-selectTeacher";
+import SelectTeacher from "@/components/sections/SelectTeacher";
 import AllWaitingList from "@/components/sections/AllWaitingList";
 
 export default {
@@ -61,13 +59,13 @@ export default {
     @include flex(row, flex-start, center);
     h1 {
       font-size: 32px;
-      // *Vantar: font-weight: 500/medium;
+      font-weight: 500;
       margin-left: 8px;
     }
   }
   .total-waiting-time {
     h2 {
-      font-size: 24px;
+      font-size: 16px;
       line-height: 32px;
       font-weight: bold;
     }

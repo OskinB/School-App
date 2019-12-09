@@ -9,22 +9,22 @@
 
     <!-- *** MOBILE*** -->
     <section id="mb-interviews">
-      <div class="mobile-card">
+      <div class="mobile-card" v-for="interview in interviewList" v-bind:key="interview.info">
         <div class="card-top">
-          <h4>24.apríl</h4>
+          <h4>{{interview.date}}</h4>
           <div class="subject-icon">
             <img src="../assets/javascript-img.svg" alt="Áfangi" />
           </div>
         </div>
         <div class="mobile-card-info">
-          <h2>Munnlegt próf</h2>
+          <h2>{{interview.info}}</h2>
           <div class="selected-person">
-            <h3>Ellert Smári</h3>
+            <h3>{{interview.teacherName}}</h3>
             <img src="../assets/teacher-avatar.svg" alt="Kennari" />
           </div>
         </div>
       </div>
-      <div class="mobile-btn-add" id="mb-interviews-btn">
+      <div class="mobile-btn-add" id="mb-interviews-btn" v-if="isTeacher" @click="showModal">
         <h3>Bæta við</h3>
         <img src="../assets/btn-add-icon.svg" alt="Bæta við" />
       </div>
@@ -47,7 +47,7 @@
         <tr
           class="waitingList-card-info"
           v-for="interview in interviewList"
-          v-bind:key="interview.id"
+          v-bind:key="interview.info"
         >
           <td>
             <h3>{{interview.date}}</h3>
@@ -55,8 +55,8 @@
 
           <td>
             <div class="selected-subject">
-              <h3>{{interview.subject}}</h3>
               <img :src="getImgUrl(interview.subjectIcon)" alt="Áfangi" />
+              <h3>{{interview.subject}}</h3>
             </div>
           </td>
 
@@ -66,8 +66,8 @@
 
           <td>
             <div class="selected-person">
-              <h3>{{interview.teacherName}}</h3>
               <img :src="getImgUrl(interview.teacherAvatar)" alt="Kennari" />
+              <h3>{{interview.teacherName}}</h3>
             </div>
           </td>
 
@@ -84,11 +84,15 @@
 
       <div class="btn-holder" id="dt-interviews-btn" v-if="isTeacher">
         <div class="btn-add-lg">
-          <a class="btn-add-lg" href="#open-inter">Bæta við</a>
+          <button type="button" class="btn-add-lg" @click="showModal">Bæta við</button>
         </div>
       </div>
     </section>
-    <ModalAddInterview />
+    <ModalAddInterview
+      v-show="isModalVisible"
+      @interview-submitted="ModalAddInterview"
+      @close="closeModal"
+    />
   </div>
 </template>
 
@@ -102,13 +106,14 @@ export default {
   },
   data() {
     return {
+      isModalVisible: false,
       interviewList: [
         {
           date: "24.apríl",
           subject: "JavaScript",
           subjectIcon: "javascript-img.svg",
           info: "Munnlegt próf",
-          teacherName: "Ellert Smári",
+          teacherName: "Smári",
           teacherAvatar: "teacher-avatar.svg",
           value: 20
         },
@@ -127,6 +132,15 @@ export default {
   methods: {
     getImgUrl(pic) {
       return require("../assets/" + pic);
+    },
+    showModal() {
+      this.isModalVisible = true;
+    },
+    closeModal() {
+      this.isModalVisible = false;
+    },
+    ModalAddInterview(addInterview) {
+      this.interviewList.push(addInterview);
     }
   }
 };
@@ -142,7 +156,7 @@ export default {
     @include flex(row, flex-start, center);
     h1 {
       font-size: 24px;
-      // *Vantar: font-weight: 500/medium;
+      font-weight: 500;
       margin-left: 8px;
     }
   }

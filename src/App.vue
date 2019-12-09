@@ -1,9 +1,7 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <!-- <router-link to="/">Login</!-->
-      <!-- <router-link to="/home">Home</router-link> -->
-      <router-link v-if="authenticated" to="/login" v-on:click.native="logout()" replace>Logout</router-link>
+    <div id="nav" v-show="authenticated">
+      <router-link v-if="authenticated" to="/login" v-on:click.native="logout()" replace>Útskráning</router-link>
     </div>
     <router-view
       @authenticated="setAuthenticated"
@@ -21,17 +19,17 @@ export default {
       authenticated: false,
       logedUserInfo: {},
       student: {
-        username: "sara",
-        password: "sara",
-        name: "Sara",
-        avatar: "student-avatar.svg",
+        username: "as",
+        password: "as",
+        name: "Ósk",
+        avatar: "student0-avatar.svg",
         teacher: false
       },
       teacher: {
         username: "smari",
         password: "smari",
         name: "Smári",
-        avatar: "teacher-avatar.svg",
+        avatar: "smari-avatar.svg",
         teacher: true
       }
     };
@@ -57,22 +55,36 @@ export default {
 
 <style lang="scss">
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  font-family: "Raleway", sans-serif;
+  text-align: right;
 }
 
-// #nav {
-//   padding: 10px;
+#nav {
+  padding: 16px 0;
 
-//   a {
-//     font-weight: bold;
-//     color: #2c3e50;
+  a {
+    font-weight: bold;
+    color: $light-blue;
+    font-size: 14px;
+    padding: 8px 8px;
+    margin: 8px 8px;
 
-//     &.router-link-exact-active {
-//       color: #42b983;
-//     }
-//   }
-// }
+    &:hover {
+      color: $navy-blue;
+    }
+  }
+}
+
+// *** DESKTOP SIZE ***
+@media only screen and (min-width: 900px) {
+  #nav {
+    padding: 24px 0;
+
+    a {
+      font-size: 16px;
+      padding: 8px 16px;
+      margin: 8px 56px;
+    }
+  }
+}
 </style>

@@ -22,68 +22,39 @@
     .modal {
         background: $white;
         box-shadow: 0 0 6px 1px;
-        overflow-x: auto;
-        width: 500px;
+        overflow: auto;
+        // width: 92%;
+        width: 345px;
+        // width: 500px;
         position: relative;
+        top: 16px;
         border-radius: 5px;
-    }
 
-    .modal-close {
-        color: #aaa;
-        line-height: 50px;
-        font-size: 100%;
-        font-weight: bold;
-        position: absolute;
-        right: 0;
-        text-align: center;
-        top: 0;
-        width: 70px;
-        text-decoration: none;
+        .modal-top {
+            @include flex(row, space-between, center);
+            margin-bottom: 24px;
 
-        &:hover {
-            color: black;
+            .modal-close {
+                color: #aaa;
+                font-size: 100%;
+                font-weight: bold;
+                text-align: center;
+                text-decoration: none;
+                padding: 8px;
+
+                &:hover {
+                    color: black;
+                }
+            }
         }
     }
+
+
 }
 
-// **** Modal Content ***
-form {
-    padding: 24px;
-
-    h1 {
-        font-size: 24px;
-        line-height: 34px;
-        color: $navy-blue;
-        font-weight: bold;
-        text-align: left;
-        margin-bottom: 24px;
-    }
-
-
-    input[type="text"],
-    select,
-    textarea {
-        background-color: $light-grey;
-        border-radius: 5px;
-        color: black;
-        border: none;
-        margin: 8px 0;
-        padding: 1rem;
-        width: 100%;
-    }
-
-    textarea {
-        overflow-y: scroll;
-        resize: none;
-        height: 150px;
-    }
-
-    input[type="submit"] {
-        @include btnBox(168px, 48px, $green);
-        border: none;
-
-        &:hover {
-            opacity: 1;
-        }
+// *** DESKTOP SIZE ***
+@media only screen and (min-width: 900px) {
+    .modal {
+        width: 500px;
     }
 }

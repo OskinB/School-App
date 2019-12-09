@@ -2,10 +2,11 @@
   <transition name="modal-fade">
     <div class="modal-backdrop">
       <div class="modal" role="dialog">
-        <a class="modal-close" @click="close" title="Loka">X</a>
-
         <form action @submit.prevent="onSubmit">
-          <h1>Þarftu hjálp?</h1>
+          <div class="modal-top">
+            <h1>Þarftu hjálp?</h1>
+            <a class="modal-close" @click="close" title="Loka">X</a>
+          </div>
           <div class="form-element">
             <select id="subjectName" name="subjectName" v-model="form.subject" required>
               <option value disabled selected hidden class="disabled">Veldu áfanga</option>
@@ -66,7 +67,9 @@ export default {
         teacherName: this.form.teacherName,
         helpInfo: this.form.helpInfo,
         time: 5,
-        studentName: "Nemi"
+        studentName: "Loged in Nemi",
+        studentAvatar: "student0-avatar.svg",
+        teacherAvatar: "teacher-avatar.svg"
       };
       this.$emit("help-submitted", addHelp);
       this.$emit("close");

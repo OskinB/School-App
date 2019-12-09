@@ -2,23 +2,23 @@
   <div>
     <!-- *** MOBILE *** -->
     <section id="mb-waitingList">
-      <div class="mobile-card">
+      <div class="mobile-card" v-for="help in waitingList" v-bind:key="help.helpInfo">
         <div class="card-top">
-          <h4>10:00</h4>
+          <h4>{{help.time}} mín</h4>
           <div class="subject-icon">
             <img src="../../assets/figma-img.svg" alt="Áfangi" />
           </div>
         </div>
         <div class="mobile-card-info">
-          <h2>Hönnunarpæling</h2>
+          <h2>{{help.helpInfo}}</h2>
           <div class="selected-person">
-            <h3>Ósk Björns</h3>
+            <h3>{{help.studentName}}</h3>
             <img src="../../assets/student-avatar.svg" alt="Nemandi" />
           </div>
         </div>
       </div>
       <!-- * IF STUDENT - SHOW * -->
-      <div class="mobile-btn-add">
+      <div class="mobile-btn-add" @click="showModal">
         <h3>Bæta við</h3>
         <img src="../../assets/btn-add-icon.svg" alt="Bæta við" />
       </div>
@@ -41,8 +41,8 @@
         <tr class="waitingList-card-info" v-for="help in waitingList" v-bind:key="help.helpInfo">
           <td>
             <div class="selected-subject">
+              <img :src="getImgSubject(help.subject)" alt="Áfangi" />
               <h3>{{help.subject}}</h3>
-              <!-- <img :src="getImgUrl(help.subjectIcon)" alt="Áfangi" /> -->
             </div>
           </td>
 
@@ -52,15 +52,15 @@
 
           <td>
             <div class="selected-person">
-              <h3>{{help.teacherName}}</h3>
               <!-- <img :src="getImgUrl(help.teacherAvatar)" alt="Kennari" /> -->
+              <h3>{{help.teacherName}}</h3>
             </div>
           </td>
 
           <td>
             <div class="selected-person">
+              <img :src="getImgStudent(help.studentAvatar)" alt="Nemandi" />
               <h3>{{help.studentName}}</h3>
-              <!-- <img :src="getImgUrl(help.studentAvatar)" alt="Nemandi" /> -->
             </div>
           </td>
 
@@ -109,30 +109,39 @@ export default {
       waitingList: [
         {
           subject: "Vefþróun",
-          subjectIcon: "figma-img.svg",
-          helpInfo: "Skil ekki mixins",
+          helpInfo: "Can't display from my PHP array",
           teacherName: "Pedro",
           teacherAvatar: "teacher-avatar.svg",
           studentName: "Ósk",
-          studentAvatar: "student-avatar.svg",
+          studentAvatar: "student1-avatar.svg",
           time: 5
         },
         {
           subject: "JavaScript",
-          subjectIcon: "javascript-img.svg",
-          helpInfo: "Virkar ekki",
-          teacherName: "Ellert Smári",
+          helpInfo: ".filter í .map er ekki að virka rétt",
+          teacherName: "Smári",
           teacherAvatar: "teacher-avatar.svg",
-          studentName: "Æsa",
-          studentAvatar: "student-avatar.svg",
+          studentName: "Siggi",
+          studentAvatar: "student2-avatar.svg",
           time: 5
         }
       ]
     };
   },
-  computed: {},
   methods: {
-    getImgUrl(pic) {
+    getImgSubject(pic) {
+      if (pic === "Vefþróun") {
+        return require("../../assets/vefthroun-img.svg");
+      } else if (pic === "JavaScript") {
+        return require("../../assets/javascript-img.svg");
+      } else if (pic === "Hönnun") {
+        return require("../../assets/figma-img.svg");
+      } else if (pic === "HTML/CSS") {
+        return require("../../assets/html-img.svg");
+      } else {
+      }
+    },
+    getImgStudent(pic) {
       return require("../../assets/" + pic);
     },
     ModalAddHelp(addHelp) {
@@ -148,11 +157,10 @@ export default {
     },
     getAccess() {
       this.isTeacher = this.teacherIs;
-    },
-    totalTime() {}
+    }
   },
   mounted() {
-    // this.getAccess();
+    console.log(this.teacherIs);
   }
 };
 </script>
