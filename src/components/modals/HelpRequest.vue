@@ -19,9 +19,10 @@
           <div class="form-element">
             <select id="teachers" name="teachers" v-model="form.teacherName" required>
               <option value disabled selected hidden>Veldu kennara</option>
-              <option value="Smári">Smári</option>
-              <option value="Pedro">Pedro</option>
               <option value="Jonathan">Jonathan</option>
+              <option value="Jónína">Jónína</option>
+              <option value="Pedro">Pedro</option>
+              <option value="Smári">Smári</option>
             </select>
           </div>
           <div class="form-element">
