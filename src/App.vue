@@ -22,15 +22,15 @@ export default {
       authenticated: false,
       logedUserInfo: {},
       student: {
-        username: "as",
-        password: "as",
+        username: "osk",
+        password: "osk",
         name: "Ósk",
         avatar: "student0-avatar.svg",
         teacher: false
       },
       teacher: {
-        username: "sm",
-        password: "sm",
+        username: "smari",
+        password: "smari",
         name: "Smári",
         avatar: "smari-avatar.svg",
         teacher: true
@@ -57,11 +57,6 @@ export default {
 </script>
 
 <style lang="scss">
-#app {
-  font-family: "Raleway", sans-serif;
-  text-align: right;
-}
-
 #nav {
   padding: 16px 0;
   @include flex(row, flex-end, center);

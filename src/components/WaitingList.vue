@@ -5,17 +5,18 @@
         <img src="../assets/waitinglist-img.svg" alt="Biðlisti" />
         <h1>Biðlisti</h1>
       </div>
-      <div class="total-waiting-time" id="waitingListTime-display" v-if="showCard === false">
+      <div class="total-waiting-time" id="waitingListTime-display" v-if="showList">
         <h2>{{ waitTime }} mín bið</h2>
       </div>
     </section>
 
-    <SelectTeacher v-if="showCard === true" @click.native="showNext" />
+    <SelectTeacher v-if="showSelectCard" @click.native="showNext" />
     <AllWaitingList
       v-if="showList"
       @get-total-time="showTotalTime"
       @back-to-select="showCardAgain"
       v-bind="$props"
+      :teacher="isTeacher"
     />
   </div>
 </template>
@@ -35,22 +36,33 @@ export default {
   data() {
     return {
       showList: false,
-      showCard: true,
-      waitTime: 10
+      showSelectCard: true,
+      waitTime: 10,
+      isTeacher: false
     };
   },
   methods: {
     showNext() {
       this.showList = true;
-      this.showCard = false;
+      this.showSelectCard = false;
     },
     showTotalTime(time) {
       this.waitTime = time;
     },
     showCardAgain() {
-      this.showCard = true;
+      this.showSelectCard = true;
       this.showList = false;
+    },
+    toggleAccess() {
+      if (this.logedUserInfo.teacher) {
+        this.showSelectCard = false;
+        this.showList = true;
+        this.isTeacher = true;
+      }
     }
+  },
+  mounted() {
+    this.toggleAccess();
   }
 };
 </script>
@@ -78,6 +90,8 @@ export default {
     }
   }
 }
+
+// ********** MEDIA QUERIES **********
 
 // *** DESKTOP SIZE ***
 @media only screen and (min-width: 900px) {

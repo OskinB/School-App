@@ -1,7 +1,3 @@
-button {
-    outline: none;
-}
-
 .mobile-btn-add {
     @include flex(row, space-between, center);
     @include card;
@@ -75,6 +71,25 @@ button {
     }
 }
 
+.btn-holder-position {
+
+    .btn-back-holder {
+        @include flex(row, flex-start, center);
+        margin: 8px 16px 40px;
+        padding: 8px;
+        font-size: 16px;
+        font-weight: 500;
+
+        a {
+            color: $navy-blue;
+            cursor: pointer;
+
+            &:hover {
+                color: $light-blue;
+            }
+        }
+    }
+}
 
 // ********** MEDIA QUERIES **********
 
@@ -87,4 +102,13 @@ button {
         display: none;
     }
 
+    .btn-holder-position {
+        @include flex(row, flex-end, center);
+
+        .btn-back-holder {
+            @include flex(row, center, center);
+            width: 240px;
+            margin: 0px;
+        }
+    }
 }

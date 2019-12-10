@@ -2,7 +2,7 @@
   <div>
     <!-- *** MOBILE *** -->
     <section id="mb-waitingList">
-      <div class="mobile-card" v-for="help in waitingList" v-bind:key="help.helpInfo">
+      <div class="mobile-card" v-for="help in waitingList" :key="help.helpInfo">
         <div class="card-top">
           <h4>{{help.time}} mín</h4>
           <div class="subject-icon">
@@ -17,10 +17,18 @@
           </div>
         </div>
       </div>
-      <!-- * IF STUDENT - SHOW * -->
-      <div class="mobile-btn-add" @click="showModal">
-        <h3>Bæta við</h3>
-        <img src="../../assets/btn-add-icon.svg" alt="Bæta við" />
+
+      <!-- *** TOGGLE IF Student/Teacher *** -->
+      <div v-if="teacher === false">
+        <div class="btn-holder-position">
+          <div class="btn-back-holder">
+            <a @click="backToSelect">Til baka</a>
+          </div>
+        </div>
+        <div class="mobile-btn-add" @click="showModal">
+          <h3>Bæta við</h3>
+          <img src="../../assets/btn-add-icon.svg" alt="Bæta við" />
+        </div>
       </div>
     </section>
 
@@ -38,7 +46,7 @@
         </tr>
 
         <!-- *** Column info *** -->
-        <tr class="waitingList-card-info" v-for="help in waitingList" v-bind:key="help.helpInfo">
+        <tr class="waitingList-card-info" v-for="help in waitingList" :key="help.helpInfo">
           <td>
             <div class="selected-subject">
               <img :src="getImgSubject(help.subject)" alt="Áfangi" />
@@ -67,24 +75,21 @@
           <td>
             <h3>{{help.time}} mín</h3>
           </td>
-          <td>
-            <h3>PROPS: {{logedUserInfo.name}}</h3>
-          </td>
-          <!-- * IF TEACHER - SHOW ON EVERY CARD* -->
-          <!-- * IF STUDENT - SHOW ON YOUR OWN CARD* -->
-          <!-- <div class="close-icon">
-            <img src="../../assets/x-icon.svg" alt="Eyða" />
-          </div>-->
+          
         </tr>
       </table>
 
-      <!-- * IF STUDENT - SHOW ADD BTN * -->
-      <div>
-        <button @click="backToSelect">Til baka</button>
-      </div>
-      <div class="btn-holder" id="dt-interviews-btn">
-        <div class="btn-add-lg">
-          <button type="button" class="btn-add-lg" @click="showModal">Bæta við</button>
+      <!-- *** TOGGLE IF Student/Teacher *** -->
+      <div v-if="teacher === false">
+        <div class="btn-holder-position">
+          <div class="btn-back-holder">
+            <a @click="backToSelect">Til baka</a>
+          </div>
+        </div>
+        <div class="btn-holder" id="dt-interviews-btn">
+          <div class="btn-add-lg">
+            <button type="button" class="btn-add-lg" @click="showModal">Bæta við</button>
+          </div>
         </div>
       </div>
     </section>
@@ -104,7 +109,8 @@ import AllWaitingList from "@/components/sections/AllWaitingList";
 export default {
   name: "AllWaitingList",
   props: {
-    logedUserInfo: Object
+    logedUserInfo: Object,
+    teacher: Boolean
   },
   components: {
     ModalHelpRequest
@@ -167,11 +173,7 @@ export default {
     },
     backToSelect() {
       this.$emit("back-to-select");
-    },
-    getAccess() {}
-  },
-  mounted() {
-    console.log();
+    }
   }
 };
 </script>

@@ -48,23 +48,23 @@
             <h2>Veldu tíma sem eru í boði</h2>
             <div class="time-holder" id="interviewTime" name="interviewTime">
               <div class="time">
-                <input type="checkbox" id="9" value="09:00" v-model="form.time" />
+                <input type="checkbox" id="9" value="09:00" />
                 <label for="9">09:00</label>
               </div>
               <div class="time">
-                <input type="checkbox" id="930" value="09:30" v-model="form.time" />
+                <input type="checkbox" id="930" value="09:30" />
                 <label for="930">09:30</label>
               </div>
               <div class="time">
-                <input type="checkbox" id="10" value="10:00" v-model="form.time" />
+                <input type="checkbox" id="10" value="10:00" />
                 <label for="10">10:00</label>
               </div>
               <div class="time">
-                <input type="checkbox" id="1030" value="10:30" v-model="form.time" />
+                <input type="checkbox" id="1030" value="10:30" />
                 <label for="1030">10:30</label>
               </div>
               <div class="time">
-                <input type="checkbox" id="11" value="11:00" v-model="form.time" />
+                <input type="checkbox" id="11" value="11:00" />
                 <label for="11">11:00</label>
               </div>
             </div>
@@ -118,11 +118,9 @@ export default {
         subject: this.form.subject,
         value: this.form.value,
         date: this.form.day,
-        time: this.form.time,
         info: this.form.interviewInfo,
         teacherName: this.logedUserInfo.name,
-        teacherAvatar: this.logedUserInfo.avatar,
-        subjectIcon: "javascript-img.svg"
+        teacherAvatar: this.logedUserInfo.avatar
       };
       this.$emit("interview-submitted", addInterview);
       this.$emit("close");
@@ -132,20 +130,10 @@ export default {
         (this.form.day = ""),
         (this.form.time = ""),
         (this.form.interviewInfo = "");
-      // Höndla input errors, sjá vue mastery video.
     }
   }
 };
 </script>
 
-
 <style lang="scss" >
-// ********** MEDIA QUERIES **********
-
-// *** MOBILE SIZE ***
-@media only screen and (max-width: 900px) {
-}
-// *** DESKTOP SIZE ***
-@media only screen and (min-width: 900px) {
-}
 </style>

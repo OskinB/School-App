@@ -71,28 +71,18 @@ export default {
         helpInfo: this.form.helpInfo,
         studentName: this.logedUserInfo.name,
         studentAvatar: this.logedUserInfo.avatar,
-        time: 5,
-        teacherAvatar: "teacher-avatar.svg"
+        teacherAvatar: "jonina-avatar.svg",
+        time: 5
       };
       this.$emit("help-submitted", addHelp);
       this.$emit("close");
       (this.form.subject = ""),
         (this.form.teacherName = ""),
         (this.form.helpInfo = "");
-      // Höndla input errors, sjá vue mastery video.
     }
   }
 };
 </script>
 
-
 <style lang="scss" >
-// ********** MEDIA QUERIES **********
-
-// *** MOBILE SIZE ***
-@media only screen and (max-width: 900px) {
-}
-// *** DESKTOP SIZE ***
-@media only screen and (min-width: 900px) {
-}
 </style>

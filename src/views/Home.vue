@@ -49,6 +49,8 @@ export default {
   }
 }
 
+// ********** MEDIA QUERIES **********
+
 // *** DESKTOP SIZE ***
 @media only screen and (min-width: 900px) {
   .user-greeting {

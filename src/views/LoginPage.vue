@@ -3,15 +3,30 @@
     <img src="../assets/Tskoli-logo.svg" alt="Tækniskólinn" />
     <h1>Velkomin/n</h1>
     <div class="login-input">
-      <input type="text" v-model="input.username" placeholder="Notendanafn" />
-      <input type="password" v-model="input.password" placeholder="Lykilorð" />
+      <input
+        type="text"
+        v-model="input.username"
+        @click="showError"
+        placeholder="Notendanafn"
+        required
+      />
+      <input
+        type="password"
+        v-model="input.password"
+        @click="showError"
+        placeholder="Lykilorð"
+        required
+      />
       <div class="forgot-pw">
         <h4>Gleymt lykilorð?</h4>
       </div>
     </div>
+    <div class="error">
+      <h3 v-show="error.show">{{error.message}}</h3>
+    </div>
     <div class="btn-holder-modal">
       <div class="btn-login">
-        <button type="button" class="btn-login" v-on:click="login()">Skrá inn</button>
+        <button type="button" class="btn-login" @click="login()">Skrá inn</button>
       </div>
     </div>
   </div>
@@ -25,6 +40,10 @@ export default {
       input: {
         username: "",
         password: ""
+      },
+      error: {
+        message: "",
+        show: false
       }
     };
   },
@@ -46,11 +65,19 @@ export default {
           this.$emit("logedUserInfo", this.$parent.teacher);
           this.$router.replace({ name: "Home" });
         } else {
+          this.error.show = true;
+          this.error.message = "Notendanafn og/eða lykilorð er rangt";
           console.log("The username and / or password is incorrect");
         }
       } else {
+        this.error.show = true;
+        this.error.message = "Skráðu notendanafn og lykilorð";
+
         console.log("A username and password must be present");
       }
+    },
+    showError() {
+      this.error.show = false;
     }
   }
 };
@@ -96,6 +123,12 @@ export default {
       }
     }
   }
+  .error {
+    margin: 8px;
+    font-size: 14px;
+    color: crimson;
+    height: 14px;
+  }
 
   h1 {
     font-size: 24px;
@@ -108,15 +141,5 @@ export default {
   .login-btns {
     margin: 40px 0;
   }
-}
-
-// ********** MEDIA QUERIES **********
-
-// *** MOBILE SIZE ***
-@media only screen and (max-width: 900px) {
-}
-
-// *** DESKTOP SIZE ***
-@media only screen and (min-width: 900px) {
 }
 </style>

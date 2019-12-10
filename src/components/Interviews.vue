@@ -9,22 +9,22 @@
 
     <!-- *** MOBILE*** -->
     <section id="mb-interviews">
-      <div class="mobile-card" v-for="interview in interviewList" v-bind:key="interview.info">
+      <div class="mobile-card" v-for="interview in interviewList" :key="interview.info">
         <div class="card-top">
           <h4>{{interview.date}}</h4>
           <div class="subject-icon">
-            <img src="../assets/javascript-img.svg" alt="Áfangi" />
+            <img :src="getImgSubject(interview.subject)" alt="Áfangi" />
           </div>
         </div>
         <div class="mobile-card-info">
           <h2>{{interview.info}}</h2>
           <div class="selected-person">
             <h3>{{interview.teacherName}}</h3>
-            <img src="../assets/teacher-avatar.svg" alt="Kennari" />
+            <img :src="getImgUrl(interview.teacherAvatar)" alt="Kennari" />
           </div>
         </div>
       </div>
-      <div class="mobile-btn-add" id="mb-interviews-btn" @click="showModal">
+      <div class="mobile-btn-add" id="mb-interviews-btn" @click="showModal" v-if="isTeacher">
         <h3>Bæta við</h3>
         <img src="../assets/btn-add-icon.svg" alt="Bæta við" />
       </div>
@@ -44,18 +44,14 @@
         </tr>
 
         <!-- *** Column info *** -->
-        <tr
-          class="waitingList-card-info"
-          v-for="interview in interviewList"
-          v-bind:key="interview.info"
-        >
+        <tr class="waitingList-card-info" v-for="interview in interviewList" :key="interview.info">
           <td>
             <h3>{{interview.date}}</h3>
           </td>
 
           <td>
             <div class="selected-subject">
-              <img :src="getImgUrl(interview.subjectIcon)" alt="Áfangi" />
+              <img :src="getImgSubject(interview.subject)" alt="Áfangi" />
               <h3>{{interview.subject}}</h3>
             </div>
           </td>
@@ -79,13 +75,10 @@
               <h3>Skoða</h3>
             </div>
           </td>
-          <td>
-            <h3>PROPS: {{logedUserInfo.name}}</h3>
-          </td>
         </tr>
       </table>
 
-      <div class="btn-holder" id="dt-interviews-btn">
+      <div class="btn-holder" id="dt-interviews-btn" v-if="isTeacher">
         <div class="btn-add-lg">
           <button type="button" class="btn-add-lg" @click="showModal">Bæta við</button>
         </div>
@@ -113,24 +106,25 @@ export default {
   data() {
     return {
       isModalVisible: false,
+      isTeacher: false,
       interviewList: [
         {
           date: "24.apríl",
           subject: "JavaScript",
-          subjectIcon: "javascript-img.svg",
           info: "Munnlegt próf",
           teacherName: "Smári",
           teacherAvatar: "smari-avatar.svg",
-          value: 20
+          value: 20,
+          time: []
         },
         {
           date: "11.apríl",
           subject: "Hönnun",
-          subjectIcon: "figma-img.svg",
           info: "Figma próf",
           teacherName: "Jonathan",
-          teacherAvatar: "teacher-avatar.svg",
-          value: 10
+          teacherAvatar: "jonni-avatar.svg",
+          value: 10,
+          time: []
         }
       ]
     };
@@ -138,6 +132,18 @@ export default {
   methods: {
     getImgUrl(pic) {
       return require("../assets/" + pic);
+    },
+    getImgSubject(pic) {
+      if (pic === "Vefþróun") {
+        return require("../assets/vefthroun-img.svg");
+      } else if (pic === "JavaScript") {
+        return require("../assets/javascript-img.svg");
+      } else if (pic === "Hönnun") {
+        return require("../assets/figma-img.svg");
+      } else if (pic === "HTML/CSS") {
+        return require("../assets/html-img.svg");
+      } else {
+      }
     },
     showModal() {
       this.isModalVisible = true;
@@ -148,14 +154,14 @@ export default {
     ModalAddInterview(addInterview) {
       this.interviewList.push(addInterview);
     },
-    getAccess() {
-      // if (this.logedUserInfo.teacher === true) {
-      //   this.isTeacher = true;
-      // }
+    toggleAccess() {
+      if (this.logedUserInfo.teacher) {
+        this.isTeacher = true;
+      }
     }
   },
   mounted() {
-    // this.getAccess(this.logedUserInfo);
+    this.toggleAccess();
   }
 };
 </script>
