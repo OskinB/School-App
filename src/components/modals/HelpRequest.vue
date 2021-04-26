@@ -8,8 +8,15 @@
             <a class="modal-close" @click="close" title="Loka">X</a>
           </div>
           <div class="form-element">
-            <select id="subjectName" name="subjectName" v-model="form.subject" required>
-              <option value disabled selected hidden class="disabled">Veldu áfanga</option>
+            <select
+              id="subjectName"
+              name="subjectName"
+              v-model="form.subject"
+              required
+            >
+              <option value disabled selected hidden class="disabled"
+                >Veldu áfanga</option
+              >
               <option value="HTML/CSS">HTML/CSS</option>
               <option value="JavaScript">JavaScript</option>
               <option value="Hönnun">Hönnun</option>
@@ -17,7 +24,12 @@
             </select>
           </div>
           <div class="form-element">
-            <select id="teachers" name="teachers" v-model="form.teacherName" required>
+            <select
+              id="teachers"
+              name="teachers"
+              v-model="form.teacherName"
+              required
+            >
               <option value disabled selected hidden>Veldu kennara</option>
               <option value="Jonathan">Jonathan</option>
               <option value="Jónína">Jónína</option>
@@ -85,5 +97,4 @@ export default {
 };
 </script>
 
-<style lang="scss" >
-</style>
+<style lang="scss"></style>

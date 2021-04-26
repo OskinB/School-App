@@ -5,7 +5,11 @@
         <img src="../assets/waitinglist-img.svg" alt="Biðlisti" />
         <h1>Biðlisti</h1>
       </div>
-      <div class="total-waiting-time" id="waitingListTime-display" v-if="showList">
+      <div
+        class="total-waiting-time"
+        id="waitingListTime-display"
+        v-if="showList"
+      >
         <h2>{{ waitTime }} mín bið</h2>
       </div>
     </section>
@@ -66,7 +70,6 @@ export default {
   }
 };
 </script>
-
 
 <style lang="scss">
 .page-title {

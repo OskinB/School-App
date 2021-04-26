@@ -1,7 +1,12 @@
 <template>
   <div id="app">
     <div id="nav" v-show="authenticated">
-      <router-link v-if="authenticated" to="/login" @click.native="logout()" replace>
+      <router-link
+        v-if="authenticated"
+        to="/login"
+        @click.native="logout()"
+        replace
+      >
         <img src="./assets/log-out.svg" alt="img" />
         <h2>Útskráning</h2>
       </router-link>
@@ -22,16 +27,16 @@ export default {
       authenticated: false,
       logedUserInfo: {},
       student: {
-        username: "osk",
-        password: "osk",
-        name: "Ósk",
+        username: "stud",
+        password: "stud",
+        name: "Student",
         avatar: "student0-avatar.svg",
         teacher: false
       },
       teacher: {
-        username: "smari",
-        password: "smari",
-        name: "Smári",
+        username: "teach",
+        password: "teach",
+        name: "Teacher",
         avatar: "smari-avatar.svg",
         teacher: true
       }

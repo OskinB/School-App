@@ -4,15 +4,15 @@
     <section id="mb-waitingList">
       <div class="mobile-card" v-for="help in waitingList" :key="help.helpInfo">
         <div class="card-top">
-          <h4>{{help.time}} mín</h4>
+          <h4>{{ help.time }} mín</h4>
           <div class="subject-icon">
             <img :src="getImgSubject(help.subject)" alt="Áfangi" />
           </div>
         </div>
         <div class="mobile-card-info">
-          <h2>{{help.helpInfo}}</h2>
+          <h2>{{ help.helpInfo }}</h2>
           <div class="selected-person">
-            <h3>{{help.studentName}}</h3>
+            <h3>{{ help.studentName }}</h3>
             <img :src="getImgStudent(help.studentAvatar)" alt="Nemandi" />
           </div>
         </div>
@@ -46,36 +46,39 @@
         </tr>
 
         <!-- *** Column info *** -->
-        <tr class="waitingList-card-info" v-for="help in waitingList" :key="help.helpInfo">
+        <tr
+          class="waitingList-card-info"
+          v-for="help in waitingList"
+          :key="help.helpInfo"
+        >
           <td>
             <div class="selected-subject">
               <img :src="getImgSubject(help.subject)" alt="Áfangi" />
-              <h3>{{help.subject}}</h3>
+              <h3>{{ help.subject }}</h3>
             </div>
           </td>
 
           <td>
-            <h3>{{help.helpInfo}}</h3>
+            <h3>{{ help.helpInfo }}</h3>
           </td>
 
           <td>
             <div class="selected-person">
               <img :src="getImgTeacher(help.teacherAvatar)" alt="Kennari" />
-              <h3>{{help.teacherName}}</h3>
+              <h3>{{ help.teacherName }}</h3>
             </div>
           </td>
 
           <td>
             <div class="selected-person">
               <img :src="getImgStudent(help.studentAvatar)" alt="Nemandi" />
-              <h3>{{help.studentName}}</h3>
+              <h3>{{ help.studentName }}</h3>
             </div>
           </td>
 
           <td>
-            <h3>{{help.time}} mín</h3>
+            <h3>{{ help.time }} mín</h3>
           </td>
-          
         </tr>
       </table>
 
@@ -88,7 +91,9 @@
         </div>
         <div class="btn-holder" id="dt-interviews-btn">
           <div class="btn-add-lg">
-            <button type="button" class="btn-add-lg" @click="showModal">Bæta við</button>
+            <button type="button" class="btn-add-lg" @click="showModal">
+              Bæta við
+            </button>
           </div>
         </div>
       </div>
@@ -104,7 +109,6 @@
 
 <script>
 import ModalHelpRequest from "../modals/HelpRequest";
-import AllWaitingList from "@/components/sections/AllWaitingList";
 
 export default {
   name: "AllWaitingList",
@@ -151,7 +155,6 @@ export default {
         return require("../../assets/figma-img.svg");
       } else if (pic === "HTML/CSS") {
         return require("../../assets/html-img.svg");
-      } else {
       }
     },
     getImgStudent(pic) {
@@ -178,8 +181,7 @@ export default {
 };
 </script>
 
-
-<style lang="scss" >
+<style lang="scss">
 // ********** MEDIA QUERIES **********
 
 // *** MOBILE SIZE ***

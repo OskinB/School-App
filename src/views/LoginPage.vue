@@ -22,11 +22,13 @@
       </div>
     </div>
     <div class="error">
-      <h3 v-show="error.show">{{error.message}}</h3>
+      <h3 v-show="error.show">{{ error.message }}</h3>
     </div>
     <div class="btn-holder-modal">
       <div class="btn-login">
-        <button type="button" class="btn-login" @click="login()">Skrá inn</button>
+        <button type="button" class="btn-login" @click="login()">
+          Skrá inn
+        </button>
       </div>
     </div>
   </div>

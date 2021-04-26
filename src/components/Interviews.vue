@@ -9,22 +9,31 @@
 
     <!-- *** MOBILE*** -->
     <section id="mb-interviews">
-      <div class="mobile-card" v-for="interview in interviewList" :key="interview.info">
+      <div
+        class="mobile-card"
+        v-for="interview in interviewList"
+        :key="interview.info"
+      >
         <div class="card-top">
-          <h4>{{interview.date}}</h4>
+          <h4>{{ interview.date }}</h4>
           <div class="subject-icon">
             <img :src="getImgSubject(interview.subject)" alt="Áfangi" />
           </div>
         </div>
         <div class="mobile-card-info">
-          <h2>{{interview.info}}</h2>
+          <h2>{{ interview.info }}</h2>
           <div class="selected-person">
-            <h3>{{interview.teacherName}}</h3>
+            <h3>{{ interview.teacherName }}</h3>
             <img :src="getImgUrl(interview.teacherAvatar)" alt="Kennari" />
           </div>
         </div>
       </div>
-      <div class="mobile-btn-add" id="mb-interviews-btn" @click="showModal" v-if="isTeacher">
+      <div
+        class="mobile-btn-add"
+        id="mb-interviews-btn"
+        @click="showModal"
+        v-if="isTeacher"
+      >
         <h3>Bæta við</h3>
         <img src="../assets/btn-add-icon.svg" alt="Bæta við" />
       </div>
@@ -44,31 +53,35 @@
         </tr>
 
         <!-- *** Column info *** -->
-        <tr class="waitingList-card-info" v-for="interview in interviewList" :key="interview.info">
+        <tr
+          class="waitingList-card-info"
+          v-for="interview in interviewList"
+          :key="interview.info"
+        >
           <td>
-            <h3>{{interview.date}}</h3>
+            <h3>{{ interview.date }}</h3>
           </td>
 
           <td>
             <div class="selected-subject">
               <img :src="getImgSubject(interview.subject)" alt="Áfangi" />
-              <h3>{{interview.subject}}</h3>
+              <h3>{{ interview.subject }}</h3>
             </div>
           </td>
 
           <td>
-            <h3>{{interview.info}}</h3>
+            <h3>{{ interview.info }}</h3>
           </td>
 
           <td>
             <div class="selected-person">
               <img :src="getImgUrl(interview.teacherAvatar)" alt="Kennari" />
-              <h3>{{interview.teacherName}}</h3>
+              <h3>{{ interview.teacherName }}</h3>
             </div>
           </td>
 
           <td>
-            <h3>{{interview.value}}%</h3>
+            <h3>{{ interview.value }}%</h3>
           </td>
           <td>
             <div class="btn-add-sm">
@@ -80,7 +93,9 @@
 
       <div class="btn-holder" id="dt-interviews-btn" v-if="isTeacher">
         <div class="btn-add-lg">
-          <button type="button" class="btn-add-lg" @click="showModal">Bæta við</button>
+          <button type="button" class="btn-add-lg" @click="showModal">
+            Bæta við
+          </button>
         </div>
       </div>
     </section>
@@ -142,7 +157,6 @@ export default {
         return require("../assets/figma-img.svg");
       } else if (pic === "HTML/CSS") {
         return require("../assets/html-img.svg");
-      } else {
       }
     },
     showModal() {
@@ -166,8 +180,7 @@ export default {
 };
 </script>
 
-
-<style lang="scss" >
+<style lang="scss">
 .page-title {
   color: $navy-blue;
   margin: 32px 0 48px;

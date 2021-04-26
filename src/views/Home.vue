@@ -1,7 +1,7 @@
 <template>
   <div class="container" id="home">
     <div class="user-greeting">
-      <h1>Góðan daginn, {{logedUserInfo.name}}</h1>
+      <h1>Góðan daginn, {{ logedUserInfo.name }}</h1>
       <img :src="getImgUrl(logedUserInfo.avatar)" alt="Notandi" />
     </div>
     <WaitingList v-bind="$props" />
@@ -32,7 +32,7 @@ export default {
 };
 </script>
 
-<style lang="scss" >
+<style lang="scss">
 .user-greeting {
   margin-bottom: 56px;
   @include flex(row, flex-start, center);

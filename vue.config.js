@@ -8,7 +8,7 @@ module.exports = {
       preProcessor: "scss",
       patterns: [path.resolve(__dirname, "./src/scss/global.scss")]
     }
-  },
+  }
   // css: {
   //   loaderOptions: {
   //     sass: {
