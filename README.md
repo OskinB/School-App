@@ -1,5 +1,6 @@
 # The School App
-I wanted to learn and test Vue.js, so I re-did a part of an older project which is a platform for teachers and students. It was a fun project, and I would love to continue it using Vue.js and create a complete project.
+I wanted to learn and test Vue.js, so I re-did a part of an older project which is a platform for teachers and students. It was a fun project, and I would love to continue it using Vue.js and create a complete project.<br>
+Check out the project live with Netlify: https://school-app.netlify.app/#/login
 > Mobile and desktop view.
 
 ## Project setup
