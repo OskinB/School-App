@@ -17,4 +17,4 @@ To start the project locally:
   * As a teacher, you can add an interview card where students would then book a timeslot.
 
 ## Stack
-This project was built with Vue.js and Sass and the data is stored loacally..
+This project was built with Vue.js and Sass and the data is stored loacally.
